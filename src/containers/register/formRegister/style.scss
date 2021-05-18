@@ -1,0 +1,97 @@
+@import '../../../scss/color.scss';
+
+.form-resgister {
+  &__time {
+    display: flex;
+    justify-content: space-between;
+
+    &-label {
+      font-size: 15px;
+      font-weight: 500;
+      margin: 5px 0;
+      display: inline-block;
+    }
+
+    &-input,
+    &-select {
+      width: 100%;
+      height: 40px;
+      padding: 6px 12px;
+      background-color: #fff;
+      background-image: none;
+      border: 1px solid #d9dadc;
+      font-size: 15px;
+      box-sizing: border-box;
+      outline: none;
+      border-radius: 5px;
+    }
+  }
+
+  &-h3 {
+    margin: 15px 0;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.25px;
+    font-weight: 700;
+    color: $black;
+  }
+
+  &__date,
+  &__year {
+    width: 20%;
+  }
+
+  &__month {
+    width: 50%;
+  }
+
+  &__radio {
+    display: flex;
+  }
+
+  &__radio-item {
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+    margin-right: 30px;
+  }
+
+  &__radio-item-label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-left: 5px;
+  }
+
+  &__check {
+    display: flex;
+    padding: 10px 0;
+  }
+
+  &__check-span {
+    font-size: 14px;
+    font-weight: 500;
+    margin-left: 10px;
+  }
+
+  &__desciption-span {
+    font-size: 11px;
+  }
+
+  &__desciption-link {
+    color: $green;
+    text-decoration: underline;
+  }
+
+  &__btn {
+    background-color: #1ed760;
+    color: #000;
+    border-radius: 500px;
+    padding: 16px 48px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 700;
+    margin: 10px 0;
+  }
+}

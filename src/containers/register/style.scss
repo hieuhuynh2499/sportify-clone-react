@@ -1,0 +1,40 @@
+@import '../../scss/color.scss';
+
+.register {
+  width: 450px;
+  margin: 0 auto;
+  padding: 30px 0;
+
+  &__logo {
+    text-align: center;
+  }
+
+  &__logo-images {
+    height: 60px;
+    width: auto;
+  }
+
+  &__title {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 30px 0 20px;
+    text-align: center;
+  }
+
+  &__desciption {
+    margin: 10px 0;
+  }
+
+  &__desciption-span {
+    font-size: 11px;
+  }
+
+  &__desciption-link {
+    color: $green;
+    text-decoration: underline;
+  }
+
+  &__text {
+    text-align: center;
+  }
+}
