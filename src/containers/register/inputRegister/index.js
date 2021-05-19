@@ -3,18 +3,22 @@ import PropTypes from 'prop-types'
 import './style.scss'
 
 function InputRegister(props) {
-  const { label, placeholder, idInput } = props
+  const {name, label, placeholder, type, error, id, value,handleInputValue} = props
   return (
     <div className="input-form-register">
-      <label className="input-form-register__label" htmlFor={idInput}>
+      <label className="input-form-register__label" htmlFor={name}>
         {label}
       </label>
       <input
+        name={name}
         className='input-form-register__input'
-        type={idInput}
+        type={type}
         placeholder={placeholder}
-        id={idInput}
+        id={id}
+        value={value}
+        onChange={handleInputValue}
       />
+      {error[name] && <p className="text-error">{error[name]}</p>}
     </div>
   )
 }
@@ -22,13 +26,23 @@ function InputRegister(props) {
 InputRegister.propTypes = {
   label: PropTypes.string,
   placeholder: PropTypes.string,
-  idInput: PropTypes.string,
+  name: PropTypes.string,
+  error: PropTypes.object,
+  type: PropTypes.string,
+  id: PropTypes.number,
+  value: PropTypes.string,
+  handleInputValue: PropTypes.func
 }
 
 InputRegister.defaultProps = {
   label: '',
   placeholder: '',
-  idInput: '',
+  id: '',
+  type: '',
+  name: '',
+  value: '',
+  error: {},
+  handleInputValue: () => {},
 }
 
 export default InputRegister

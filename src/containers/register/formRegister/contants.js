@@ -17,25 +17,29 @@ export const monthsSelect = [
       id: 1,
       label: "What's your email?",
       placeholder: 'Enter your email.',
-      idInput: 'email',
+      type: 'email',
+      name:'email',
     },
     {
       id: 2,
       label: 'Confirm your email',
       placeholder: 'Enter your email again.',
-      idInput: 'email',
+      type: 'email',
+      name:'emailconfirm',
     },
     {
       id: 3,
       label: 'Create a password',
       placeholder: 'Create a password.',
-      idInput: 'password',
+      type: 'password',
+      name:'password',
     },
     {
       id: 4,
       label: 'What should we call you?',
       placeholder: 'Enter a profile name.',
-      idInput: 'name',
+      type: 'name',
+      name:'name',
     },
   ]
   
