@@ -1,0 +1,10 @@
+.mainlayout{
+    display:flex;
+    &__left{
+        flex-basis: 230px;
+    }
+    &__right{
+        flex-grow: 1;
+        
+    }
+}
