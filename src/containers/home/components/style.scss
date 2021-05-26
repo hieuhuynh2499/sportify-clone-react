@@ -1,0 +1,28 @@
+@import '../../../scss/color.scss';
+.music-day{
+  display:flex;
+  height:80px;
+  width: 280px;
+  border-radius: 5px;
+  overflow:hidden;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin-right: 20px;
+  margin-bottom: 20px;
+  &__img{
+      height:80px;
+      width: 80px;
+  }
+  &__content{
+      display:flex;
+      align-items: center;
+      padding:0 50px 0 10px;
+      
+  }
+  &__text{
+      font-size: 16px;
+      font-weight: 600;
+      text-transform: capitalize;
+      line-height:1;
+  }
+}
