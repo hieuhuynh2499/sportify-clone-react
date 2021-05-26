@@ -5,7 +5,9 @@
   width: 230px;
   height: 100vh;
   padding: 10px;
-
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
   &__logo {
     margin: 10px 0 20px;
   }
