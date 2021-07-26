@@ -112,7 +112,7 @@ function FormRegister() {
               id="mm"
               placeholder="MONTH"
               value={inputValue.moths}
-              name='moths'
+              names='moths'
               onChange={handleInputValue}
             >
               {monthsSelect.map((moth, index) => (

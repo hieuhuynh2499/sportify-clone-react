@@ -6,10 +6,19 @@ import LoginLayout from '../components/layout/wellcome'
 import MainLayout from '../components/layout/main'
 import YourPlayList from '../containers/yourplaylist'
 import Search from '../containers/search'
+import PlayList from '../containers/playlist'
+import ListFavourite from '../containers/listfavorite'
 const routes = [
   {
     path: '/yourplaylist',
     component: YourPlayList,
+    isAuthRoute: false,
+    exact: true,
+    layout: MainLayout,
+  },
+  {
+    path: '/list-favorite',
+    component: ListFavourite,
     isAuthRoute: false,
     exact: true,
     layout: MainLayout,
@@ -22,7 +31,14 @@ const routes = [
     layout: MainLayout,
   },
   {
-    path: '/home',
+    path: '/play-list',
+    component: PlayList,
+    isAuthRoute: false,
+    exact: true,
+    layout: MainLayout,
+  },
+  {
+    path: '/',
     component: Home,
     isAuthRoute: false,
     exact: true,
@@ -41,7 +57,7 @@ const routes = [
     exact: true,
   },
   {
-    path: '/',
+    path: '/wellcome',
     component: Wellcome,
     isAuthRoute: false,
     exact: true,

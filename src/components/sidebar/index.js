@@ -14,7 +14,7 @@ const listLi = [
         id:1,
         img:homeLogo,
         text:'home',
-        link:'/home',
+        link:'/',
     },
     {   
         id:2,
@@ -62,7 +62,7 @@ function Sidebar() {
               <img className="sidebar__menu-img" src={heartLogo} alt="" />
             </div>
 
-            <p className="sidebar__menu-text">listed songs</p>
+            <Link to="/list-favorite" className="sidebar__menu-text">listed songs</Link>
           </li>
         </ul>
       </div>

@@ -1,12 +1,14 @@
 import React from 'react'
 import './style.scss'
-import songca from '../../../images/songca.jpg';
-function MusicDay() {
+
+
+
+function MusicDay({music}) {
     return (
         <div className="music-day">
-            <img className="music-day__img" src={songca} alt="" />
+            <img className="music-day__img" src={music.image} alt="" />
             <div className="music-day__content">
-               <p className="music-day__text"> discover weekly</p>
+               <p className="music-day__text"> {music.name}</p>
             </div>
         </div>
     )

@@ -1,0 +1,155 @@
+@import '../../scss/color.scss';
+
+.playmusic{
+    height: 100px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: $bgPlayMusic;
+    z-index: 1000;
+    padding: 0 20px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &__left{
+        display: flex;
+        align-items: center;
+    }
+    &__song{
+        margin: 0 20px;
+    }
+    &__song-name{
+        color:$white;
+        font-size: 14px;
+        font-weight: 500;
+        word-spacing: 1px;
+        margin-bottom: 5px;
+    }
+    &__song-singer{
+        color: $gray;
+        font-size: 10px;
+    }
+    &__heart{
+        color: $white;
+        &-icon{
+            font-size: 14px;
+            margin-right: 10px;
+        }
+    }
+    &__play{
+        
+
+    }
+    &__play-top{
+        display: flex;
+    justify-content: center;
+    margin: 10px;
+    }
+    &__play-center{
+        display: flex;
+        align-items: center;
+        & .field{
+            display: flex;
+            align-items: center;
+            height: 30px;
+            width: 600px;
+            & .value{
+                color:$white;
+            }
+        }
+    }
+    &__play-input{
+        width: 600px;
+        height: 3px;
+        border-radius: 10px;
+    }
+   
+    &__play-btn{
+        background-color: transparent;
+        border: none;
+        color: #b3b3b3;
+        padding: 0;
+        margin: 0 3px;
+        cursor: pointer;
+        &:hover{
+            color: $white;
+        }
+    }
+    &__play-start{
+        background-color: $white;
+        color: $black;
+        border-radius: 50%;
+        height: 35px;
+        width: 35px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.4s ease;
+        &:hover{
+            color: $black;
+            transform: scale(1.05);
+        }
+    }
+    &__play-icon{
+        font-size: 30px;
+    }
+    &__play-icon1, &__play-icon2{
+        font-size: 20px;
+    }
+    &__play-icon1--green{
+        color:$green;
+    }
+    &__play-number{
+        color: #b3b3b3;
+    }
+    &__play-right{
+        display: flex;
+        align-items: center;
+
+    }
+    &__play-right button svg{
+        font-size: 20px;
+
+    }
+    &__input-range{
+            -webkit-appearance: none;
+            width: 100%;
+            height: 3px;
+            background: #535353;    
+            border-radius: 5px;
+            outline: none;
+            border: none;
+            z-index: 2222;
+            margin: 0 5px;
+            &:hover::-webkit-slider-thumb{
+                visibility: visible;
+            }
+        &::-webkit-slider-thumb{
+            -webkit-appearance: none;
+            width: 10px;
+            height: 10px;
+            background: $white;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            visibility: hidden;
+          }
+        &::-moz-range-thumb{
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: $white; 
+            border-radius: 50%;
+            cursor: pointer;
+          }
+    }
+}
+
+.value{
+    width: 40px;
+    &:first-child{
+        text-align: right;
+    }
+}

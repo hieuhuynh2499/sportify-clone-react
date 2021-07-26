@@ -5,6 +5,8 @@
     border-radius: 5px;
     transition: background 0.3s ease;
     margin:0 20px 20px 0;
+    height:250px;
+    box-sizing: border-box;
     &:hover{
         background:rgba(124, 123, 123,0.3);
     }
@@ -17,20 +19,33 @@
     &__content{
         color:$white;
         text-transform: capitalize;
-        padding-top: 15px;
+        padding-top: 5px;
         &-h3{
             font-size: 16px;
             font-weight: 700;
             letter-spacing: normal;
             line-height: 24px;
-            
+            -webkit-line-clamp: 1;
+            display: -webkit-box;
+            margin-top: 4px;
+            white-space: normal;
+            -webkit-box-orient: vertical;
+            width: 148px;
+            overflow: hidden;
         }
         &-p{
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 400;
             letter-spacing: normal;
             line-height: 16px;
-            
+            -webkit-line-clamp: 2;
+            display: -webkit-box;
+            margin-top: 4px;
+            white-space: normal;
+            -webkit-box-orient: vertical;
+            width: 145px;
+            overflow: hidden;
+            color: rgb(179, 179, 179);
         }
     }
 }

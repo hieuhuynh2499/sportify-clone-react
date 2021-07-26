@@ -1,0 +1,90 @@
+@import "../../../../scss/color.scss";
+
+.song{
+    font-size: 14px;
+    text-transform: capitalize;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px 10px 0;
+    &:hover{
+        background-color: hsla(0,0%,100%,.3);
+        border-radius: 3px;
+    }
+    &:hover &__number &__number__number{
+        display: none;
+    }
+    &:hover &__number &__number__icon{
+        display: inline-block;
+    }
+    &__number{
+        flex-basis: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &__number{
+            display: inline-block;
+        }
+        &__icon{
+            display: none;
+            font-size: 20px;
+        }
+    }
+    &__title{
+        flex-basis: 410px;
+        display: flex;
+        align-items: center;
+        img{
+            height: 50px;
+            width: 50px;
+        }
+        p{
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: normal;
+            line-height: 24px;
+            color: $white;
+            text-transform: capitalize;
+            margin-left: 15px;
+            span{
+                font-size: 12px;
+                color: #d3d1d1;
+            }
+        }
+    }
+    &__album{
+        flex-basis: 300px;
+    }
+    &__date{
+        flex-basis: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-right: 20px;
+        &__dontLike{
+            visibility: hidden;
+            cursor: pointer;
+        }
+        &__favorite{
+            color:$green;
+            visibility: visible;
+            cursor: pointer;
+        }
+    }
+    &__oclock{
+        flex-basis: 120px;
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+        svg{
+            margin-left: 15px;
+            visibility: hidden;
+            font-size: 20px;
+        }
+    }
+    &:hover &__date svg,&:hover &__oclock svg{
+        visibility: visible;
+        cursor: pointer;
+    }
+}

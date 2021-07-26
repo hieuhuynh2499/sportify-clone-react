@@ -1,0 +1,54 @@
+@import "../../../../scss/color.scss";
+
+
+.song-recommend{
+    display: flex;
+    align-items: center;
+    padding: 10px 0px;
+    font-size: 14px;
+    text-transform: capitalize;
+    &:hover{
+        background-color: hsla(0,0%,100%,.1);
+        border-radius: 3px;
+    }
+    &__left{
+        flex-grow: 5;
+        display: flex;
+        align-items: center;
+        padding-left: 30px;
+        img{
+            height: 50px;
+            width: 50px;
+        }
+        p{
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: normal;
+            line-height: 24px;
+            color: $white;
+            text-transform: capitalize;
+            margin-left: 15px;
+            span{
+                font-size: 12px;
+                color: #d3d1d1;
+            }
+        }
+    }
+    &__center{
+        flex-grow: 3;
+    }
+    &__right{
+        flex-grow: 1;
+        text-align: center;
+        button{
+            display: inline-block;
+            border: 1px solid #535353;
+            padding:10px 30px;
+            text-transform: uppercase;
+            background-color: transparent;
+            outline: none;
+            color: $white;
+            border-radius: 50px;
+        }
+    }
+}

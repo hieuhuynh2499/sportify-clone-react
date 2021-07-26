@@ -3,11 +3,11 @@
     display:flex;
     &__left{
         width: 230px;
-        flex-basis: 230px;  
-        background-color: aqua;
-        height: 500px;
     }
-    &__right{  
+    &__right{
+        position: relative;
+        z-index: 99;
+        background-color:red;
         flex-grow: 1;
         box-sizing: border-box;
     }
@@ -18,9 +18,48 @@
         background-color:$black;
         height:70px;
         padding:0 30px;
-       
-      &-left{
+        position: sticky;
+        top: 0;
+        right:0;
+        z-index: 100;
+        width: 100%;
+        box-sizing: border-box;
+        &-left{
           display:flex;
+          align-items: center;
+      }
+      &-search{
+          margin-left: 30px;
+          background-color: aqua;
+          width: 250px;
+          height: 40px;
+          position: relative;
+          border-radius: 40px;
+          border:none;
+          overflow: hidden;
+          
+          &__input{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            border:none;
+            outline: none;
+            padding-left: 45px;
+          }
+          &__btn{
+            position: absolute;
+            top: 56%;
+            left: 6px;
+            transform: translate(0, -50%);
+            background-color: transparent;
+            border: none;
+            outline: none;
+            & svg{
+                font-size: 24px;
+            }
+          }
       }
       &-right{
           display:flex;
@@ -70,6 +109,7 @@
         height: 32px;
 
         padding: 2px;
+        padding-right: 4px;
         text-transform: capitalize;
         &__img{
             height: 28px;
