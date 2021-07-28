@@ -41,7 +41,6 @@ export const AddSongFaild = () =>{
 
 
 export const DeleteSongRequest = (song) =>{
-    console.log(song)
     return{
         type:'DELETE_SONG_REQUEST',
         payload:song
@@ -49,7 +48,6 @@ export const DeleteSongRequest = (song) =>{
 }
 
 export const DeleteSongSuccess = (listSong) =>{
-    console.log(listSong)
     return{
         type:'DELETE_SONG_SUCCESS',
         payload:listSong
@@ -69,7 +67,6 @@ export const editSongRequest = (song) =>{
 }
 
 export const editSongSuccess = (listSong) =>{
-    console.log(listSong)
     return{
         type:'EDIT_SONG_SUCCESS',
         payload:listSong
@@ -78,5 +75,24 @@ export const editSongSuccess = (listSong) =>{
 export const editSongFaild = () =>{
     return{
         type:'EDIT_SONG_FAILD'
+    }
+}
+
+export const SongChoseRequest = (song) =>{
+    return{
+        type:'SONG_CHOSE_REQUEST',
+        payload:song
+    }
+}
+
+export const SongChoseSuccess = (listSong) =>{
+    return{
+        type:'SONG_CHOSE_SUCCESS',
+        payload:listSong
+    }
+}
+export const SongChoseFaild = () =>{
+    return{
+        type:'SONG_CHOSE_FAILD'
     }
 }

@@ -7,12 +7,16 @@ import PropTypes from 'prop-types';
 SongPlaylist.propTypes = {
     song: PropTypes.any,
     handleDeleteSong:PropTypes.func,
-    handleEditSong:PropTypes.func
+    handleEditSong:PropTypes.func,
+    choseSongPlay:PropTypes.func
 };
 
-function SongPlaylist({song,handleDeleteSong,handleEditSong}) {
+function SongPlaylist({song,handleDeleteSong,handleEditSong,choseSongPlay}) {
     const [play,setPlay] = useState(false);
     const handleChangePlay = () =>{
+        if(!play){
+            choseSongPlay(song)
+        }
         setPlay(!play)
     }
     return (

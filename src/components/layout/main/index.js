@@ -6,81 +6,32 @@ import {MdNavigateNext,MdNavigateBefore} from 'react-icons/md';
 import {AiFillCaretDown,AiFillCaretUp,AiOutlineSearch} from 'react-icons/ai';
 import imgSanji from '../../../images/avata.jpg'
 import PlayMusic from '../../playmusic';
-import laylalalay from '../../../mp3/Laylalay-JackG5R.mp3'
-import keobonggon from '../../../mp3/KeoBongGon.mp3'
-import tinhyeumauhong from '../../../mp3/TinhYeuMauHong.mp3'
+import { useDispatch, useSelector } from 'react-redux';
+import { listSongRequest } from '../../../actions/listsong';
+import { useEffect } from 'react';
 
-const listSong = [{
-  namesong: "laylalalay",
-  nameauthor: "jack 97",
-  imagesong: "https://i.scdn.co/image/ab67616d0000485129f906fe7a60df7777b02ee1",
-  namealbum: "muộn rồi mà sao còn",
-  timesong: "4:35",
-  favorite: false,
-  path:laylalalay,
-  id: "1"
-},
-{
-  namesong: "kẹo bông gòn",
-  nameauthor: "osad ",
-  imagesong: "https://i.scdn.co/image/ab67616d00004851df69f9f25936875207a6a8dd",
-  namealbum: "yêu sắc yếu",
-  timesong: "2:57",
-  favorite: false,
-  path:keobonggon,
-  id: "2"
-},
-{
-  namesong: "tình yêu màu hồng",
-  nameauthor: "wren evans",
-  imagesong: "https://i.scdn.co/image/ab67616d0000485108c808810a37c9a04f88cca1",
-  namealbum: "thích em nhiều hơn",
-  timesong: "2:51",
-  favorite: false,
-  path:tinhyeumauhong,
-  id: "3"
-},
-{
-  namesong: "nang tho",
-  nameauthor: "hoang dung",
-  imagesong: "https://i.scdn.co/image/ab67616d0000485129f906fe7a60df7777b02ee1",
-  namealbum: "muộn rồi mà sao còn",
-  timesong: "4:35",
-  favorite: false,
-  path:laylalalay,
-  id: "1"
-},
-{
-  namesong: "tinh ban dieu ky",
-  nameauthor: "amee ricky star ",
-  imagesong: "https://i.scdn.co/image/ab67616d00004851df69f9f25936875207a6a8dd",
-  namealbum: "yêu sắc yếu",
-  timesong: "2:57",
-  favorite: false,
-  path:keobonggon,
-  id: "2"
-},
-{
-  namesong: "yeu lai tu dau",
-  nameauthor: "khac viet",
-  imagesong: "https://i.scdn.co/image/ab67616d0000485108c808810a37c9a04f88cca1",
-  namealbum: "thích em nhiều hơn",
-  timesong: "2:51",
-  favorite: false,
-  path:tinhyeumauhong,
-  id: "3"
-}
-]
 function MainLayout({ children }) {
+  const listSongReducer = useSelector(state => state.songReducer.listSong)
+  const songChose = useSelector(state => state.songReducer.songChose)
+  const dispatch = useDispatch();
+ 
+  useEffect(()=>{
+      dispatch(listSongRequest())
+  },[dispatch])
+  useEffect(()=>{
+    let indexSong = listSongReducer.findIndex(song => song.id === songChose.id)
+    if(indexSong === -1) indexSong = 0
+    setIndexSongCurrent(indexSong)
+  },[songChose,listSongReducer])
   const location = useLocation();
   const [indexSongCurrent,setIndexSongCurrent] = useState(0)
-  const [songList, setSongList] = useState(listSong);
   const [random, setRandom] = useState(false);
-  let currentSong = songList[indexSongCurrent] || null;
+  let currentSong = listSongReducer[indexSongCurrent] || {};
+  // console.log(listSongReducer)
   const randomSong = () =>{
       let indexRandomSong = 0
       do{
-          indexRandomSong = Math.floor(Math.random()*listSong.length);
+          indexRandomSong = Math.floor(Math.random()*listSongReducer.length);
       }while (indexRandomSong === indexSongCurrent)
       return indexRandomSong
   }
@@ -93,7 +44,7 @@ function MainLayout({ children }) {
     }
     else{
       setIndexSongCurrent(x => x + 1)
-      if(indexSongCurrent > songList.length -2) {
+      if(indexSongCurrent > listSongReducer.length -2) {
         setIndexSongCurrent(0)
       }
     }
@@ -101,7 +52,7 @@ function MainLayout({ children }) {
 
   const prevSong = () =>{
     setIndexSongCurrent(x => x - 1)
-  if(indexSongCurrent === 0) setIndexSongCurrent(songList.length - 1)
+    if(indexSongCurrent === 0) setIndexSongCurrent(listSongReducer.length - 1)
   }
   const getBgHeader = (path) =>{
     let bg = "";

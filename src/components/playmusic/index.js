@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './style.scss'
 import {BsHeart,BsAspectRatio} from 'react-icons/bs'
 import {BiSkipNext,BiSkipPrevious,BiPlay,BiDevices,BiPause} from 'react-icons/bi'
@@ -9,6 +9,8 @@ import {RiPlayList2Fill} from 'react-icons/ri'
 import InputMusic from './components/inputslider'
 import { useRef } from 'react'
 import PropTypes from 'prop-types'
+import { useDispatch } from 'react-redux'
+import { listSongRequest } from '../../actions/listsong'
 
 
 PlayMusic.prototype ={
@@ -20,6 +22,19 @@ PlayMusic.prototype ={
 
 
 function PlayMusic({songCurrent,nextSong,prevSong,handleChangeRandom}) { 
+    const dispatch = useDispatch();
+    useEffect(()=>{
+      dispatch(listSongRequest())
+    },[dispatch])
+    useEffect(()=>{
+        setPrecentage(0)
+        setIsPlaying(true)
+        setTimeout(()=>{
+          const audio = audioRef.current
+          audio.volume = 1
+          audio.play()
+        },10)
+    },[songCurrent])
     const [precentage,setPrecentage] = useState(0)
     const audioRef = useRef()
     const [isPlaying, setIsPlaying] = useState(false)
@@ -35,11 +50,40 @@ function PlayMusic({songCurrent,nextSong,prevSong,handleChangeRandom}) {
     const changeRandom = () =>{
       setRandom(!random)
       handleChangeRandom()
-      console.log(12312)
     }
     const changeRepeat = () =>{
       setRepeat(!repeat)
     }
+    const prevSongChildren = () =>{
+      prevSong()
+      setPrecentage(0)
+      setIsPlaying(true)
+      setTimeout(()=>{
+        const audio = audioRef.current
+        audio.volume = 1
+        audio.play()
+      },10)
+    }
+    const nextSongChlildren = () =>{
+      if(repeat){
+        setPrecentage(0)
+        setTimeout(()=>{
+          const audio = audioRef.current
+          audio.volume = 1
+          audio.play()
+        },10)
+      }
+      else{
+        nextSong();
+        setPrecentage(0)
+        setIsPlaying(true)
+        setTimeout(()=>{
+          const audio = audioRef.current
+          audio.volume = 1
+          audio.play()
+        },10)
+      }
+    } 
     const play = () => {
         const audio = audioRef.current
         audio.volume = 1
@@ -57,7 +101,6 @@ function PlayMusic({songCurrent,nextSong,prevSong,handleChangeRandom}) {
       const getCurrDuration = (e) => {
         const percent = ((e.currentTarget.currentTime / e.currentTarget.duration) * 100).toFixed(2)
         const time = e.currentTarget.currentTime
-    
         setPrecentage(+percent)
         setCurrentTime(time.toFixed(2))
       }
@@ -88,11 +131,30 @@ function PlayMusic({songCurrent,nextSong,prevSong,handleChangeRandom}) {
           return `${min}: ${sec}`
         }
       }
+      function audioEnding (){
+          if(repeat){
+            setPrecentage(0)
+            setTimeout(()=>{
+              const audio = audioRef.current
+              audio.volume = 1
+              audio.play()
+            },10)
+          }
+          else{
+            nextSong()
+          setPrecentage(0)
+          setTimeout(()=>{
+            const audio = audioRef.current
+            audio.volume = 1
+            audio.play()
+          },10)
+          }
+      }
     return (
         <div className="playmusic">
             <div className="playmusic__left">
                 <div className="playmusic__image">
-                    <img src={songCurrent.imagesong}alt="" />
+                    <img height="70px" width="70px" src={songCurrent.imagesong}alt="" />
                 </div>
                 <div className="playmusic__song">
                     <p className="playmusic__song-name">{songCurrent.namesong}</p>
@@ -106,11 +168,11 @@ function PlayMusic({songCurrent,nextSong,prevSong,handleChangeRandom}) {
             <div className="playmusic__play">
                 <div className="playmusic__play-top">
                     <button  className="playmusic__play-btn" onClick={changeRandom}><FaRandom className={`playmusic__play-icon1 ${random  && 'playmusic__play-icon1--green' }`}/></button>
-                    <button  className="playmusic__play-btn" onClick={prevSong}>  <BiSkipPrevious className="playmusic__play-icon"/></button>
+                    <button  className="playmusic__play-btn" onClick={prevSongChildren}>  <BiSkipPrevious className="playmusic__play-icon"/></button>
                     <button  className="playmusic__play-btn playmusic__play-start " onClick={play}>
                         {isPlaying ? <BiPause className="playmusic__play-icon"/> :<BiPlay className="playmusic__play-icon"/> }
                     </button>
-                    <button  className="playmusic__play-btn" onClick={nextSong}><BiSkipNext className="playmusic__play-icon"/></button>
+                    <button  className="playmusic__play-btn" onClick={nextSongChlildren}><BiSkipNext className="playmusic__play-icon"/></button>
                     <button  className="playmusic__play-btn" onClick={changeRepeat}><FiRepeat className={`playmusic__play-icon1 ${repeat  && 'playmusic__play-icon1--green' }`}/></button>
                 </div>
                 <div className="playmusic__play-center">
@@ -119,23 +181,20 @@ function PlayMusic({songCurrent,nextSong,prevSong,handleChangeRandom}) {
                         {secondsToHms(currentTime)}</div>
                         {/* <input  className="playmusic__input-range" type="range"  steps="0.01" onChange={onChange} /> */}
                         <InputMusic onChange={onChange} percentage={precentage}/>
-                        <audio src={songCurrent.path} ref={audioRef} 
+                        <audio src={songCurrent.srcsong} ref={audioRef} 
                             onLoadedData={e =>{
-                                console.log(e.currentTarget.duration)
+                                // console.log(e.currentTarget.duration)
                                 setDuration(e.currentTarget.duration.toFixed(2))
                             }}
                             onTimeUpdate={getCurrDuration}
-                            onEnded={()=>{
-                              console.log("bai hat da het")
-                              nextSong()
-                            }}
+                            onEnded={audioEnding}
                         ></audio>
                         <div className="value ">
                         {secondsToHms(duration)}</div>
                     </div>
                 </div>
                 </div>
-                <div className="playmusic__play-right">
+            <div className="playmusic__play-right">
                         <button className="playmusic__play-btn"><HiMicrophone /></button>
                         <button className="playmusic__play-btn">  <RiPlayList2Fill/></button>
                         <button className="playmusic__play-btn"><BiDevices/></button>

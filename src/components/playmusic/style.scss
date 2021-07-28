@@ -16,6 +16,7 @@
     &__left{
         display: flex;
         align-items: center;
+        width: 350px;
     }
     &__song{
         margin: 0 20px;
@@ -40,7 +41,8 @@
     }
     &__play{
         
-
+        width: 500px;
+        flex-grow: 1;
     }
     &__play-top{
         display: flex;
@@ -50,6 +52,7 @@
     &__play-center{
         display: flex;
         align-items: center;
+        justify-content: center;
         & .field{
             display: flex;
             align-items: center;
@@ -107,7 +110,7 @@
     &__play-right{
         display: flex;
         align-items: center;
-
+        width: 200px;
     }
     &__play-right button svg{
         font-size: 20px;

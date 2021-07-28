@@ -2,7 +2,8 @@
 .mainlayout{
     display:flex;
     &__left{
-        width: 230px;
+        width: 241px;
+        max-width: 241px;
     }
     &__right{
         position: relative;
@@ -10,6 +11,7 @@
         background-color:red;
         flex-grow: 1;
         box-sizing: border-box;
+       width: 1300px;
     }
     &__header{
         display: flex;

@@ -4,12 +4,11 @@ import {BiPause} from "react-icons/bi"
 import SongPlaylist from './component/song'
 import SongRecommend from './component/songrecommend'
 import { useDispatch, useSelector } from 'react-redux'
-import { AddSongRequest, DeleteSongRequest, editSongRequest, listSongRequest } from '../../actions/listsong'
+import { AddSongRequest, DeleteSongRequest, editSongRequest, listSongRequest, SongChoseRequest } from '../../actions/listsong'
 import { listAddSongRequest } from '../../actions/addsong'
 function PlayList() {
-    const listSongReducer = useSelector(state => state.songReducer)
+    const listSongReducer = useSelector(state => state.songReducer.listSong)
     const listAddSongReducer = useSelector(state => state.addSongReducer)
-    
     const dispatch = useDispatch();
     useEffect(()=>{
         dispatch(listSongRequest())
@@ -18,13 +17,13 @@ function PlayList() {
     useEffect(() => {
         window.scrollTo(0, 0)
       }, [])
-
+    const choseSongPlay = (song) => {
+        dispatch(SongChoseRequest(song))
+    }
     const handleAddSong = (song) =>{
-       
        dispatch(AddSongRequest(song))
     }
     const handleDeleteSong = (song) =>{
-       
         dispatch(DeleteSongRequest(song))
     }
     const handleEditSong = (song) =>{
@@ -60,7 +59,7 @@ function PlayList() {
                         <div className="playlist__bottom-list__top__oclock">clock</div>
                     </div>
                    {
-                       listSongReducer.map((song,index) =>  <SongPlaylist key={index} song={song} handleDeleteSong={handleDeleteSong} handleEditSong={handleEditSong}/>)
+                       listSongReducer.map((song,index) =>  <SongPlaylist key={index} song={song} choseSongPlay={choseSongPlay} handleDeleteSong={handleDeleteSong} handleEditSong={handleEditSong}/>)
                    }
                    
                 </div>
