@@ -6,7 +6,7 @@ import favoriteImg from "../../images/favorite.JPG"
 import { useDispatch, useSelector } from 'react-redux'
 import { listSongRequest } from '../../actions/listsong'
 function ListFavourite() {
-    const listSongReducer = useSelector(state => state.songReducer)
+    const listSongReducer = useSelector(state => state.songReducer.listSong)
     
     const dispatch = useDispatch();
   const listSongFavorite = listSongReducer.filter(song => song.favorite)
@@ -44,9 +44,9 @@ function ListFavourite() {
                     <div className="playlist__bottom-list__top__oclock">clock</div>
                 </div>
                 {
-                 listSongFavorite.map((song) =>  <SongPlaylist key={song.id} song={song}/>)
+                 listSongFavorite.length > 0 ?listSongFavorite.map((song) =>  <SongPlaylist key={song.id} song={song}/>):<h1 color="#fff"> chưa có bài hát yêu thích</h1>
                 }
-               
+              
             </div>
         </div>
     </div>
